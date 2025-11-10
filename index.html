@@ -3,123 +3,119 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Chemistry Exhibition 2025 — Dark Electric (Energy Edition)</title>
+<title>Chemistry Exhibition 2025 — Dark Electric (White-Cyan)</title>
 
-<!-- Favicon: inline neo-atomic SVG so no caching problems -->
+<!-- Inline favicon (neo-atomic SVG) to avoid caching issues -->
 <link rel="icon" href="data:image/svg+xml;utf8,
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
   <rect width='100' height='100' rx='16' fill='%23060714'/>
   <g transform='translate(50,50)'>
-    <ellipse rx='30' ry='10' fill='none' stroke='%2300d8ff' stroke-width='2.8' transform='rotate(0)'/>
-    <ellipse rx='30' ry='10' fill='none' stroke='%237c3aed' stroke-width='2.6' transform='rotate(60)'/>
-    <ellipse rx='30' ry='10' fill='none' stroke='%23a78bfa' stroke-width='2.2' transform='rotate(120)'/>
-    <circle cx='0' cy='0' r='8' fill='%2300d8ff' stroke='%23ffffff' stroke-opacity='0.12' stroke-width='1.2'/>
+    <ellipse rx='30' ry='10' fill='none' stroke='%23e6ffff' stroke-width='2.8' transform='rotate(0)'/>
+    <ellipse rx='30' ry='10' fill='none' stroke='%2300ffff' stroke-width='2.6' transform='rotate(60)'/>
+    <ellipse rx='30' ry='10' fill='none' stroke='%23a6f0ff' stroke-width='2.2' transform='rotate(120)'/>
+    <circle cx='0' cy='0' r='8' fill='%23e6ffff' stroke='%23ffffff' stroke-opacity='0.14' stroke-width='1.2'/>
   </g>
 </svg>">
 
-<!-- Tailwind CDN (only for convenience of consistency with previous design) -->
+<!-- Tailwind CDN (for quick utility classes) -->
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
   :root{
-    --bg:#050714;
-    --panel:#0c1320;
-    --cyan:#00d8ff;
-    --violet:#7c3aed;
+    --bg:#030414;
+    --panel:#071022;
+    --white-cyan: #e6ffff;
+    --cyan:#00f0ff;
     --muted:#9aa7b2;
     --glass: rgba(255,255,255,0.03);
-    --btn-bg:#06b6d4;
-    --btn-text:#021226;
+    --btn-bg: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(0,240,255,0.06));
+    --glow: 0 8px 40px rgba(0,240,255,0.12);
   }
   html { scroll-behavior:smooth; }
   body{
     margin:0;
     font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
     background:
-      radial-gradient(900px 420px at 8% 12%, rgba(124,58,237,0.03), transparent 6%),
-      radial-gradient(700px 340px at 92% 88%, rgba(0,216,255,0.02), transparent 6%),
+      radial-gradient(800px 380px at 10% 12%, rgba(0,240,255,0.02), transparent 6%),
+      radial-gradient(700px 340px at 92% 88%, rgba(230,255,255,0.01), transparent 6%),
       var(--bg);
-    color:#e6f7ff;
+    color:var(--white-cyan);
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
     min-height:100vh;
     overflow-x:hidden;
   }
 
-  /* fixed nav */
-  nav { position:fixed; top:16px; left:50%; transform:translateX(-50%); z-index:120; width:92%; max-width:1200px; }
-  .navglass{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); backdrop-filter: blur(6px); border-radius:12px; padding:12px 18px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
-  .navglass a { color: rgba(230,247,255,0.9); text-decoration:none; font-weight:600; font-size:14px; }
+  /* NAV */
+  nav { position:fixed; top:18px; left:50%; transform:translateX(-50%); z-index:120; width:94%; max-width:1200px; }
+  .navglass{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); backdrop-filter: blur(6px); border-radius:14px; padding:12px 18px; display:flex; align-items:center; justify-content:space-between; gap:12px; box-shadow: var(--glow); }
+  .navglass a { color: var(--white-cyan); text-decoration:none; font-weight:700; font-size:13px; opacity:0.95; }
 
-  /* hero */
+  /* HERO */
   .hero {
-    background: linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.85)), url('https://images.unsplash.com/photo-1542534744-8c80a0a9a408?auto=format&fit=crop&w=2000&q=80');
+    background: linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.88)), url('https://images.unsplash.com/photo-1542534744-8c80a0a9a408?auto=format&fit=crop&w=2000&q=80');
     background-size:cover; background-position:center;
-    min-height:88vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:48px 20px; position:relative; overflow:hidden;
+    min-height:86vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:56px 20px; position:relative; overflow:hidden;
   }
-  .hero h1 { font-size:clamp(34px,6vw,64px); line-height:1.02; font-weight:900; background: linear-gradient(90deg,var(--cyan),var(--violet)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.02em; }
+  .hero h1 { font-size:clamp(34px,6vw,64px); line-height:1.02; font-weight:900; background: linear-gradient(90deg, rgba(230,255,255,1), rgba(0,240,255,0.9)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 
   /* canvas layers */
   #bg-canvas, #ripple-canvas { position:absolute; inset:0; z-index:0; pointer-events:none; }
 
-  main { max-width:1200px; margin:56px auto 120px; padding:0 20px; position:relative; z-index:30; }
+  main { max-width:1200px; margin:72px auto 120px; padding:0 20px; position:relative; z-index:30; }
 
-  /* panels and cards */
-  .panel { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); border-radius:12px; padding:16px; box-shadow: 0 22px 48px rgba(2,6,23,0.55); }
+  /* panels and slider */
+  .panel { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); border-radius:12px; padding:16px; box-shadow: 0 28px 64px rgba(0,0,0,0.6); }
   .slider{ display:flex; gap:18px; overflow-x:auto; scroll-snap-type:x mandatory; padding:22px 4px; -webkit-overflow-scrolling:touch; }
-  .slide{ min-width:72%; scroll-snap-align:center; border-radius:12px; overflow:hidden; transition:transform .25s ease, box-shadow .25s ease; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); cursor:pointer; }
-  .slide:hover{ transform:translateY(-10px); box-shadow: 0 32px 80px rgba(2,6,23,0.6); }
-  .slide img{ width:100%; height:440px; object-fit:cover; display:block; filter: saturate(1.05) contrast(1.03); }
+  .slide{ min-width:72%; scroll-snap-align:center; border-radius:12px; overflow:hidden; transition:transform .28s ease, box-shadow .28s ease; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); cursor:pointer; box-shadow: var(--glow); }
+  .slide:hover{ transform:translateY(-10px) scale(1.01); }
+  .slide img{ width:100%; height:440px; object-fit:cover; display:block; filter: saturate(1.02) contrast(1.02); }
 
-  @media (max-width:900px){ .slide{ min-width:92%; } .slide img{ height:260px; } }
+  @media (max-width:900px){ .slide{ min-width:92%; } .slide img{ height:260px; } .navglass{ padding:10px } }
 
-  /* person cards clickable */
+  /* person cards */
   .person { cursor:pointer; transition:transform .18s ease, box-shadow .18s ease; }
-  .person:hover { transform:translateY(-6px); box-shadow: 0 20px 50px rgba(2,6,23,0.6); }
+  .person:hover { transform:translateY(-6px); box-shadow: 0 20px 60px rgba(0,240,255,0.08); }
 
-  /* buttons: toned-down solid */
-  .btn { display:inline-block; padding:10px 14px; border-radius:999px; font-weight:700; cursor:pointer; border:none; }
-  .btn-ghost { background:transparent; color:rgba(230,247,255,0.9); border:1px solid rgba(255,255,255,0.04); }
-  .btn-primary { background:var(--btn-bg); color:var(--btn-text); box-shadow: 0 12px 30px rgba(0,188,212,0.08); transition:transform .15s ease, box-shadow .15s ease; }
-  .btn-primary:hover{ transform:translateY(-3px); box-shadow: 0 18px 48px rgba(0,188,212,0.12); }
+  /* buttons */
+  .btn { display:inline-block; padding:10px 14px; border-radius:999px; font-weight:800; cursor:pointer; border:none; }
+  .btn-ghost { background:transparent; color:var(--white-cyan); border:1px solid rgba(255,255,255,0.05); }
+  .btn-primary { background:var(--btn-bg); color:var(--bg); box-shadow: var(--glow); }
+  .btn-primary:hover{ transform:translateY(-3px); }
 
-  /* reveal animations */
+  /* reveals */
   .reveal { opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; will-change:opacity, transform; }
   .reveal.show { opacity:1; transform:translateY(0); }
 
-  /* heading shimmer */
   .shimmer { position:relative; overflow:hidden; display:inline-block; }
-  .shimmer::after{ content:""; position:absolute; inset:0; left:-60%; width:60%; background:linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.18) 50%, rgba(255,255,255,0) 100%); transform:skewX(-18deg); animation: shimmer 3.8s linear infinite; pointer-events:none; opacity:0.5; }
+  .shimmer::after{ content:""; position:absolute; inset:0; left:-60%; width:60%; background:linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0) 100%); transform:skewX(-18deg); animation: shimmer 4.2s linear infinite; pointer-events:none; opacity:0.6; }
   @keyframes shimmer { 0%{ left:-60% } 100%{ left:160% } }
 
-  /* detail view container */
+  /* detail view */
   #detailView { display:none; padding-top:120px; padding-bottom:80px; min-height:60vh; position:relative; z-index:40; }
   .detail-enter { animation: detailIn .42s cubic-bezier(.2,.9,.25,1) both; }
   @keyframes detailIn { from { opacity:0; transform:translateY(18px) scale(.996); } to { opacity:1; transform:translateY(0) scale(1);} }
 
-  /* Bio overlay: centered, faded, inset 1cm from page edges */
+  /* bio overlay (inset 1cm) */
   .bio-overlay {
     position:fixed;
-    inset:1cm; /* 1 cm margin from each edge as requested */
-    z-index:200;
-    background: linear-gradient(180deg, rgba(6,7,20,0.85), rgba(6,7,20,0.92));
-    border:1px solid rgba(255,255,255,0.06);
+    inset:1cm; /* exactly 1 cm from each edge */
+    z-index:210;
+    background: linear-gradient(180deg, rgba(2,6,18,0.92), rgba(3,8,22,0.96));
+    border:1px solid rgba(255,255,255,0.05);
     border-radius:12px;
     padding:18px;
-    box-shadow: 0 40px 120px rgba(2,6,23,0.7);
+    box-shadow: 0 40px 120px rgba(0,240,255,0.06);
     backdrop-filter: blur(8px);
-    color:#e6f7ff;
+    color:var(--white-cyan);
     display:flex;
     gap:18px;
     align-items:flex-start;
     overflow:auto;
   }
-  .bio-photo { width:240px; min-width:160px; height:240px; border-radius:10px; object-fit:cover; background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); display:flex; align-items:center; justify-content:center; color:rgba(230,247,255,0.7); font-weight:700; }
+  .bio-photo { width:260px; min-width:160px; height:260px; border-radius:10px; object-fit:cover; background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); display:flex; align-items:center; justify-content:center; color:rgba(230,247,255,0.7); font-weight:700; }
 
-  /* ripple fallback attach */
-  .energy-attach { position:relative; overflow:visible; }
-
-  footer { text-align:center; color:rgba(230,247,255,0.6); padding-bottom:40px; margin-top:28px; }
+  footer { text-align:center; color:rgba(230,255,255,0.6); padding-bottom:40px; margin-top:28px; }
 
   .muted{ color:var(--muted); }
 </style>
@@ -130,10 +126,10 @@
 <nav>
   <div class="navglass mx-auto" style="max-width:1200px;">
     <div style="display:flex;align-items:center;gap:12px;">
-      <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,var(--cyan),var(--violet));display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">CE</div>
+      <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,var(--white-cyan),var(--cyan));display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">CE</div>
       <div>
-        <div style="font-weight:900;color:#e6f7ff">Chemistry Exhibition</div>
-        <div style="font-size:12px;color:rgba(230,247,255,0.65)">2025 — Department of Chemical Sciences</div>
+        <div style="font-weight:900;color:var(--white-cyan)">Chemistry Exhibition</div>
+        <div style="font-size:12px;color:rgba(230,255,255,0.65)">2025 — Department of Chemical Sciences</div>
       </div>
     </div>
 
@@ -155,14 +151,14 @@
   <canvas id="ripple-canvas"></canvas>
 
   <div style="z-index:40; max-width:1100px; padding:28px;">
-    <h1 class="shimmer">CHEMISTRY EXHIBITION <span style="display:block;font-size:18px;color:rgba(230,247,255,0.75);font-weight:700;margin-top:8px">2025 — From molecules to materials</span></h1>
-    <p style="margin-top:18px;color:rgba(230,247,255,0.88);font-size:18px;max-width:840px;margin-left:auto;margin-right:auto;">
-      A dynamic, high-energy showcase of experiments, research and global exchange. Click exhibits or exchange items to open their full in-site pages with energy wave transitions and immersive audio.
+    <h1 class="shimmer">CHEMISTRY EXHIBITION <span style="display:block;font-size:18px;color:rgba(230,255,255,0.85);font-weight:700;margin-top:8px">2025 — From molecules to materials</span></h1>
+    <p style="margin-top:18px;color:rgba(230,255,255,0.9);font-size:18px;max-width:840px;margin-left:auto;margin-right:auto;">
+      A dynamic, high-energy showcase. Click exhibits to open their detailed page inside this site — energy waves and audio will accompany transitions.
     </p>
 
     <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;">
-      <button class="btn btn-primary" id="exploreBtn">Explore Exhibits</button>
-      <a href="#exchange" class="btn btn-ghost">See Exchange</a>
+      <button class="btn btn-primary" id="exploreBtn" style="padding:12px 18px; font-weight:900;">Explore Exhibits</button>
+      <a href="#exchange" class="btn btn-ghost" style="padding:10px 14px;">See Exchange</a>
     </div>
   </div>
 </header>
@@ -173,41 +169,41 @@
   <section id="about" class="mt-8 mb-8 reveal">
     <div style="display:grid;grid-template-columns:1fr 360px;gap:22px;align-items:start;">
       <div>
-        <h2 style="font-size:22px;font-weight:900;color:#e6f7ff">About the Exhibition</h2>
+        <h2 style="font-size:22px;font-weight:900;color:var(--white-cyan)">About the Exhibition</h2>
         <p class="muted" style="margin-top:10px;line-height:1.6">
-          Chemistry Exhibition 2025 brings student research to the public and connects industry & international experiences with local learning. Expect exhibits on nanotechnology, green chemistry, space chemistry, forensic analysis, polymer innovations and exchange journeys to industry leaders and world labs.
+          Chemistry Exhibition 2025 presents student-led exhibits and field exchanges covering space chemistry, green chemistry, nanotech, forensic analysis, polymers and more.
         </p>
       </div>
       <div class="panel reveal">
         <div style="font-weight:800;color:var(--cyan)">Event snapshot</div>
-        <ul style="margin-top:10px;color:rgba(230,247,255,0.9);line-height:1.6">
-          <li><strong>When:</strong> Full-day event (see schedule)</li>
-          <li><strong>Where:</strong> Main Hall & Research Labs</li>
+        <ul style="margin-top:10px;color:rgba(230,255,255,0.95);line-height:1.6">
+          <li><strong>When:</strong> Full-day event</li>
+          <li><strong>Where:</strong> Main Hall & Labs</li>
           <li><strong>Audience:</strong> Students, educators, public visitors</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- TEAM: Tech Head + Secretaries (vice president removed) -->
+  <!-- TEAM: Arjun, Samarth, Vansh, Aksh -->
   <section id="team" class="mb-10 reveal">
-    <h2 style="font-size:22px;font-weight:900;color:#e6f7ff">Student Team</h2>
-    <p class="muted" style="margin-top:8px">Core student organizers (exact names preserved).</p>
+    <h2 style="font-size:22px;font-weight:900;color:var(--white-cyan)">Student Team</h2>
+    <p class="muted" style="margin-top:8px">Core student organizers (names preserved).</p>
 
     <div style="margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
       <!-- Arjun -->
       <div class="panel person" tabindex="0" role="button" onclick="openBio('arjun')" onkeypress="if(event.key==='Enter') openBio('arjun')">
         <div style="display:flex;gap:12px;align-items:center">
-          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,var(--cyan),var(--violet));display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">A</div>
+          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,var(--white-cyan),var(--cyan));display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">A</div>
           <div>
             <div style="font-weight:900">Arjun Tosawad</div>
             <div class="muted">President</div>
           </div>
         </div>
-        <p class="muted" style="margin-top:8px">Leads coordination, presentation, and safety for high-impact demonstrations (organic & public-safety focus).</p>
+        <p class="muted" style="margin-top:8px">Leads coordination, presentation, and safety for high-impact demonstrations.</p>
       </div>
 
-      <!-- Secretaries: Samarth -->
+      <!-- Samarth -->
       <div class="panel person" tabindex="0" role="button" onclick="openBio('samarth')" onkeypress="if(event.key==='Enter') openBio('samarth')">
         <div style="display:flex;gap:12px;align-items:center">
           <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,#8b5cf6,#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">S</div>
@@ -216,13 +212,13 @@
             <div class="muted">Secretary</div>
           </div>
         </div>
-        <p class="muted" style="margin-top:8px">Documentation & scheduling lead; visitor coordination and poster curation.</p>
+        <p class="muted" style="margin-top:8px">Documentation & scheduling lead; visitor coordination.</p>
       </div>
 
-      <!-- Secretaries: Vansh -->
+      <!-- Vansh -->
       <div class="panel person" tabindex="0" role="button" onclick="openBio('vansh')" onkeypress="if(event.key==='Enter') openBio('vansh')">
         <div style="display:flex;gap:12px;align-items:center">
-          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,#00d8ff,#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">V</div>
+          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,#00f0ff,#a6f0ff);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">V</div>
           <div>
             <div style="font-weight:900">Vansh Mittal</div>
             <div class="muted">Secretary</div>
@@ -231,10 +227,10 @@
         <p class="muted" style="margin-top:8px">Assists documentation, communications and logistics.</p>
       </div>
 
-      <!-- Tech Head: Aksh Sharma -->
+      <!-- Aksh (Tech Head) spans full width -->
       <div class="panel person" style="grid-column: 1 / -1;" tabindex="0" role="button" onclick="openBio('aksh')" onkeypress="if(event.key==='Enter') openBio('aksh')">
-        <div style="display:flex;gap:12px;align-items:center">
-          <div style="width:72px;height:72px;border-radius:12px;background:linear-gradient(90deg,var(--violet),var(--cyan));display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226;font-size:20px">AK</div>
+        <div style="display:flex;gap:16px;align-items:center">
+          <div style="width:72px;height:72px;border-radius:12px;background:linear-gradient(90deg,var(--cyan),var(--white-cyan));display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226;font-size:20px">AK</div>
           <div>
             <div style="font-weight:900">Aksh Sharma</div>
             <div class="muted">Tech Head</div>
@@ -247,12 +243,12 @@
 
   <!-- TEACHERS -->
   <section id="teachers" class="mb-12 reveal">
-    <h2 style="font-size:22px;font-weight:900;color:#e6f7ff">Faculty & Mentors</h2>
+    <h2 style="font-size:22px;font-weight:900;color:var(--white-cyan)">Faculty & Mentors</h2>
     <div style="margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
       <div class="panel person" tabindex="0" role="button" onclick="openBio('sankalp')" onkeypress="if(event.key==='Enter') openBio('sankalp')">
         <div style="font-weight:900;color:var(--cyan)">Mr. Sankalp Maheshwari</div>
         <div class="muted" style="margin-top:6px">Professor of Organic Chemistry</div>
-        <p class="muted" style="margin-top:8px">Leads experimental design and pyrotechnics demonstrations; safety-first approach to dynamic displays and synthesis.</p>
+        <p class="muted" style="margin-top:8px">Leads experimental design and pyrotechnics demonstrations; safety-first approach.</p>
       </div>
 
       <div class="panel person" tabindex="0" role="button" onclick="openBio('ankita')" onkeypress="if(event.key==='Enter') openBio('ankita')">
@@ -269,101 +265,91 @@
     </div>
   </section>
 
-  <!-- (Exhibits, Exchange, Schedule, Contact remain as previous implementation) -->
-  <!-- EXHIBITS (abbreviated here but identical in behavior to the earlier version) -->
+  <!-- EXHIBITS: using the exact URLs you gave as the image sources -->
   <section id="exhibits" class="mb-12 reveal">
     <div style="display:flex;justify-content:space-between;align-items:center">
       <div>
-        <h2 style="font-size:22px;font-weight:900;color:#e6f7ff">Featured Exhibits</h2>
-        <div class="muted" style="margin-top:6px">Click or press Enter to open the exhibit page (same tab). Energy wave + audio will play during the transition.</div>
+        <h2 style="font-size:22px;font-weight:900;color:var(--white-cyan)">Featured Exhibits</h2>
+        <div class="muted" style="margin-top:6px">Click or press Enter to open the exhibit page (same tab). Energy wave + audio accompany the transition.</div>
       </div>
       <div style="display:flex;gap:10px">
         <button onclick="scrollSlider(-1)" class="px-3 py-2 rounded bg-white/5">Prev</button>
-        <button onclick="scrollSlider(1)" class="px-3 py-2 rounded" style="background:var(--btn-bg);color:var(--btn-text)">Next</button>
+        <button onclick="scrollSlider(1)" class="px-3 py-2 rounded" style="background:var(--btn-bg);color:var(--bg)">Next</button>
       </div>
     </div>
 
     <div class="slider mt-6" id="slider">
+
+      <!-- Chemistry In Space -->
       <div class="slide" tabindex="0" role="button" onclick="triggerEnergyAndOpen('chem-space')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('chem-space')">
-        <img src="https://images.unsplash.com/photo-1581091870623-3f40b7b1c3a2?auto=format&fit=crop&w=1800&q=80" alt="Chemistry in space microgravity lab">
+        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fls.wisc.edu%2Fnews%2Fthe-chemistry-of-space&psig=AOvVaw3xMFZdBL4Q4zgSZO8Jq2_t&ust=1762838534793000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCLiI3Lnr5pADFQAAAAAdAAAAABAE" alt="Chemistry in Space">
         <div style="padding:12px">
-          <div style="font-weight:900;color:#e6f7ff">Chemistry in Space</div>
-          <div class="muted" style="margin-top:6px">Astrochemistry: microgravity reactions, propellants and life-support systems.</div>
+          <div style="font-weight:900;color:var(--white-cyan)">Chemistry In Space</div>
+          <div class="muted" style="margin-top:6px">Astrochemistry: microgravity reactions, propellants & life-support systems.</div>
         </div>
       </div>
 
+      <!-- Green Chemistry Revolution -->
       <div class="slide" tabindex="0" role="button" onclick="triggerEnergyAndOpen('green-chemistry')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('green-chemistry')">
-        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=80" alt="green chemistry lab">
+        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pumpsandsystems.com%2Fgreen-chemistry-revolution&psig=AOvVaw1aNYGBmZQHCjYoX2XUhaT7&ust=1762838589776000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCMi1nNLr5pADFQAAAAAdAAAAABAE" alt="Green Chemistry">
         <div style="padding:12px">
-          <div style="font-weight:900;color:#e6f7ff">Green Chemistry Revolution</div>
-          <div class="muted" style="margin-top:6px">Sustainable syntheses, recyclable catalysts and biodegradable polymers.</div>
+          <div style="font-weight:900;color:var(--white-cyan)">Green Chemistry Revolution</div>
+          <div class="muted" style="margin-top:6px">Sustainable syntheses, recyclable catalysts and biopolymers.</div>
         </div>
       </div>
 
+      <!-- Nanotechnology In Medicine -->
       <div class="slide" tabindex="0" role="button" onclick="triggerEnergyAndOpen('nanotech')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('nanotech')">
-        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1800&q=80" alt="nanotechnology">
+        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.dreamstime.com%2Fadvancements-nanotechnology-manipulating-materials-molecular-level-concept-involves-atomic-scale-to-create-new-image349226392&psig=AOvVaw1S3ujYgj1fIEqCPc-GJiBj&ust=1762838636106000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKCxr-7r5pADFQAAAAAdAAAAABAL" alt="Nanotechnology">
         <div style="padding:12px">
-          <div style="font-weight:900;color:#e6f7ff">Nanotechnology in Medicine</div>
-          <div class="muted" style="margin-top:6px">Nanoparticles, targeted delivery & diagnostics.</div>
+          <div style="font-weight:900;color:var(--white-cyan)">Nanotechnology In Medicine</div>
+          <div class="muted" style="margin-top:6px">Targeted delivery, diagnostics & nanoparticle chemistry.</div>
         </div>
       </div>
 
+      <!-- Forensic And Analytical Chemistry -->
       <div class="slide" tabindex="0" role="button" onclick="triggerEnergyAndOpen('forensic')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('forensic')">
-        <img src="https://images.unsplash.com/photo-1602524815744-6e2b4d3df5aa?auto=format&fit=crop&w=1800&q=80" alt="forensic chemistry lab">
+        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.cgcuniversity.in%2Fblog%2Fforensic-science&psig=AOvVaw04jz0wH1tXAc5cvApOal88&ust=1762838755765000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCLiS4qXs5pADFQAAAAAdAAAAABAL" alt="Forensic Chemistry">
         <div style="padding:12px">
-          <div style="font-weight:900;color:#e6f7ff">Forensic & Analytical Chemistry</div>
-          <div class="muted" style="margin-top:6px">Chromatography, mass spec and crime-scene simulation.</div>
+          <div style="font-weight:900;color:var(--white-cyan)">Forensic & Analytical Chemistry</div>
+          <div class="muted" style="margin-top:6px">Crime-scene simulation and analytical techniques.</div>
         </div>
       </div>
 
+      <!-- Polymer Art And Smart Materials -->
       <div class="slide" tabindex="0" role="button" onclick="triggerEnergyAndOpen('polymer')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('polymer')">
-        <img src="https://images.unsplash.com/photo-1517976487492-0c3b6f8d8f2d?auto=format&fit=crop&w=1800&q=80" alt="polymers">
+        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.bruker.com%2Fpt%2Fproducts-and-solutions%2Fmr%2Fchemistry%2Fpolymer-chemistry.html&psig=AOvVaw2luBBF8hEvTis2KAV6VT3R&ust=1762838845690000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCPiunM7s5pADFQAAAAAdAAAAABAE" alt="Polymer Art">
         <div style="padding:12px">
-          <div style="font-weight:900;color:#e6f7ff">Polymer Art & Smart Materials</div>
-          <div class="muted" style="margin-top:6px">Shape-memory polymers and wearable chemistry.</div>
+          <div style="font-weight:900;color:var(--white-cyan)">Polymer Art & Smart Materials</div>
+          <div class="muted" style="margin-top:6px">Shape-memory polymers, responsive hydrogels & wearables.</div>
         </div>
       </div>
 
+      <!-- Chemistry In Fireworks -->
       <div class="slide" tabindex="0" role="button" onclick="triggerEnergyAndOpen('fireworks')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('fireworks')">
-        <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=1800&q=80" alt="fireworks chemistry">
+        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fphys.org%2Fnews%2F2017-07-chemist-science-fireworks.html&psig=AOvVaw3QhtZbqYZMxR7bFU_TbiFL&ust=1762838913891000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCMCl5-vs5pADFQAAAAAdAAAAABAE" alt="Fireworks Chemistry">
         <div style="padding:12px">
-          <div style="font-weight:900;color:#e6f7ff">The Chemistry of Fireworks</div>
-          <div class="muted" style="margin-top:6px">Metal salts and oxidizers for color (safety emphasized).</div>
+          <div style="font-weight:900;color:var(--white-cyan)">Chemistry In Fireworks</div>
+          <div class="muted" style="margin-top:6px">Metal salts, oxidizers and safe demonstration design.</div>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- EXCHANGE (as before) -->
+  <!-- EXCHANGE (placeholder - you said you'll give details later) -->
   <section id="exchange" class="mb-12 reveal">
     <div style="display:flex;justify-content:space-between;align-items:center;">
       <div>
-        <h2 style="font-size:22px;font-weight:900;color:#e6f7ff">Exchange & Industry Visits</h2>
-        <div class="muted" style="margin-top:6px">International and industrial experiences that inspired our exhibits — click to view full trip reports.</div>
-      </div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:12px;">
-      <div class="panel person" tabindex="0" role="button" onclick="triggerEnergyAndOpen('marble-factory')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('marble-factory')">
-        <h3 style="font-weight:900;color:#e6f7ff">Marble Factory Visit</h3>
-        <p class="muted" style="margin-top:8px">Industrial visit to study the chemistry of carbonate rocks and processing.</p>
-      </div>
-
-      <div class="panel person" tabindex="0" role="button" onclick="triggerEnergyAndOpen('spain-forensics')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('spain-forensics')">
-        <h3 style="font-weight:900;color:#e6f7ff">Spain — Forensic Labs</h3>
-        <p class="muted" style="margin-top:8px">Hands-on learning in Spanish forensic research centers and labs.</p>
-      </div>
-
-      <div class="panel person" tabindex="0" role="button" onclick="triggerEnergyAndOpen('cern')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('cern')">
-        <h3 style="font-weight:900;color:#e6f7ff">CERN, Switzerland</h3>
-        <p class="muted" style="margin-top:8px">Visit to particle detection labs and materials testing under irradiation.</p>
+        <h2 style="font-size:22px;font-weight:900;color:var(--white-cyan)">Exchange & Industry Visits</h2>
+        <div class="muted" style="margin-top:6px">(Details to be added — you said you'll provide specifics later.)</div>
       </div>
     </div>
   </section>
 
-  <!-- Schedule and contact -->
+  <!-- SCHEDULE -->
   <section id="schedule" class="mb-12 reveal">
-    <h2 style="font-size:22px;font-weight:900;color:#e6f7ff">Event Schedule</h2>
+    <h2 style="font-size:22px;font-weight:900;color:var(--white-cyan)">Event Schedule</h2>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px">
       <div class="panel">9:00 AM — Opening Ceremony & Keynote</div>
       <div class="panel">10:00 AM — Guided Exhibit Walkthrough</div>
@@ -373,18 +359,17 @@
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section id="contact" class="mb-24 reveal">
     <div style="display:flex;gap:18px;align-items:center;justify-content:space-between;">
       <div>
-        <h3 style="font-weight:900;color:#e6f7ff">Contact & Inquiries</h3>
-        <p class="muted" style="margin-top:8px">For collaborations, media requests, or participation contact:</p>
+        <h3 style="font-weight:900;color:var(--white-cyan)">Contact & Inquiries</h3>
+        <p class="muted" style="margin-top:8px">For collaborations, media requests or participation contact:</p>
         <div style="margin-top:8px;color:var(--cyan);font-weight:800">chemexpo2025@school.edu</div>
       </div>
       <div class="panel">
-        <div style="font-weight:900;color:var(--violet)">Venue</div>
+        <div style="font-weight:900;color:var(--cyan)">Venue</div>
         <div class="muted" style="margin-top:6px">Main campus — Exhibition Hall & Research Labs</div>
-        <div style="font-weight:900;color:var(--violet);margin-top:12px">Organizers</div>
-        <div class="muted" style="margin-top:6px">Department of Chemical Sciences</div>
       </div>
     </div>
   </section>
@@ -392,32 +377,30 @@
   <footer>© 2025 Chemistry Exhibition — Department of Chemical Sciences</footer>
 </main>
 
-<!-- DETAIL VIEW placeholder (same SPA behavior as earlier) -->
+<!-- DETAIL VIEW (SPA) -->
 <section id="detailView" style="display:none; padding-top:120px; padding-bottom:80px; min-height:60vh; position:relative; z-index:50;">
   <div id="detailContent" style="max-width:1100px;margin:0 auto;padding:18px;"></div>
 </section>
 
-<!-- Bio overlay container (content created dynamically). Overlay uses inset:1cm for the 1 cm margin requirement -->
+<!-- bio overlay container -->
 <div id="bioContainer" style="display:none;"></div>
 
-<!-- modal (preview) -->
-<div id="modal" style="display:none;position:fixed;inset:0;align-items:center;justify-content:center;background:rgba(2,6,23,0.75);z-index:180;padding:28px;">
-  <div style="width:100%;max-width:880px;border-radius:12px;background:linear-gradient(180deg,#071022,#071426);border:1px solid rgba(255,255,255,0.04);padding:18px;color:#e6f7ff">
+<!-- modal preview -->
+<div id="modal" style="display:none;position:fixed;inset:0;align-items:center;justify-content:center;background:rgba(2,6,23,0.75);z-index:260;padding:28px;">
+  <div style="width:100%;max-width:880px;border-radius:12px;background:linear-gradient(180deg,#071022,#071426);border:1px solid rgba(255,255,255,0.04);padding:18px;color:var(--white-cyan)">
     <div style="display:flex;justify-content:space-between;align-items:center;">
       <div>
         <div id="modalTitle" style="font-weight:900;color:var(--cyan)"></div>
-        <div id="modalSub" style="color:rgba(230,247,255,0.8);margin-top:6px">Quick preview</div>
+        <div id="modalSub" style="color:rgba(230,255,255,0.8);margin-top:6px">Quick preview</div>
       </div>
-      <div><button onclick="closeModal()" style="padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:#e6f7ff">Close</button></div>
+      <div><button onclick="closeModal()" style="padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--white-cyan)">Close</button></div>
     </div>
-    <div id="modalContent" style="margin-top:12px;color:rgba(230,247,255,0.9);line-height:1.6"></div>
+    <div id="modalContent" style="margin-top:12px;color:rgba(230,255,255,0.9);line-height:1.6"></div>
   </div>
 </div>
 
 <script>
-/* ----------------------------
-  Particle background canvas
------------------------------*/
+/* -------------- Particle background -------------- */
 (() => {
   const canvas = document.getElementById('bg-canvas');
   const dpr = Math.max(1, window.devicePixelRatio || 1);
@@ -435,15 +418,14 @@
 
   function initParticles() {
     particles = [];
-    const count = Math.round((w / dpr) * (h / dpr) / 75000);
+    const count = Math.round((w / dpr) * (h / dpr) / 88000);
     for(let i=0;i<count;i++){
       particles.push({
         x: Math.random() * w,
         y: Math.random() * h,
         r: rand(1.2, 3.6) * dpr,
         vx: rand(-0.35, 0.35) * dpr,
-        vy: rand(-0.22, 0.22) * dpr,
-        hue: rand(180, 270)
+        vy: rand(-0.22, 0.22) * dpr
       });
     }
   }
@@ -451,34 +433,16 @@
   function draw() {
     ctx.clearRect(0,0,w,h);
     const grad = ctx.createRadialGradient(w*0.2, h*0.12, 0, w*0.5, h*0.5, Math.max(w,h));
-    grad.addColorStop(0, 'rgba(124,58,237,0.02)');
+    grad.addColorStop(0, 'rgba(0,240,255,0.02)');
     grad.addColorStop(1, 'rgba(0,0,0,0)');
     ctx.fillStyle = grad;
     ctx.fillRect(0,0,w,h);
 
-    for(let i=0;i<particles.length;i++){
-      const p = particles[i];
-      for(let j=i+1;j<particles.length;j++){
-        const q = particles[j];
-        const dx = p.x - q.x, dy = p.y - q.y;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        if(dist < 120 * dpr){
-          const alpha = 0.12 * (1 - dist / (120*dpr));
-          ctx.strokeStyle = `rgba(120,80,255,${alpha})`;
-          ctx.lineWidth = 0.5 * dpr;
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(q.x, q.y);
-          ctx.stroke();
-        }
-      }
-    }
-
     for(const p of particles){
       ctx.beginPath();
       const g = ctx.createRadialGradient(p.x - 1*p.r, p.y - 1*p.r, 0, p.x, p.y, p.r*2);
-      g.addColorStop(0, 'rgba(0,216,255,0.9)');
-      g.addColorStop(0.5, 'rgba(124,58,237,0.8)');
+      g.addColorStop(0, 'rgba(230,255,255,0.95)');
+      g.addColorStop(0.5, 'rgba(0,240,255,0.65)');
       g.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = g;
       ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
@@ -505,9 +469,7 @@
   start();
 })();
 
-/* ----------------------------
-  Ripple canvas + simple audio (WebAudio)
------------------------------*/
+/* -------------- Ripple canvas + WebAudio -------------- */
 const rippleCanvas = document.getElementById('ripple-canvas');
 const rc = rippleCanvas.getContext ? rippleCanvas.getContext('2d') : null;
 const DPR = Math.max(1, window.devicePixelRatio || 1);
@@ -523,7 +485,7 @@ resizeRipple();
 window.addEventListener('resize', resizeRipple);
 
 let ripples = [];
-function createRipple(x, y, color='#66f0ff', maxR=700, duration=900){
+function createRipple(x, y, color='#bff', maxR=700, duration=900){
   ripples.push({x:x*DPR, y:y*DPR, t:performance.now(), maxR, color, duration});
 }
 function drawRipples(){
@@ -556,7 +518,7 @@ function hexToRgba(hex, a){
   return hex;
 }
 
-/* WebAudio (light weight) */
+/* WebAudio: small energy sound */
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
 let audioCtx = null;
 function ensureAudio(){
@@ -567,7 +529,7 @@ function playEnergySound(){
   if(!audioCtx) return;
   const now = audioCtx.currentTime;
   const gain = audioCtx.createGain(); gain.connect(audioCtx.destination); gain.gain.value = 0.0001;
-  gain.gain.linearRampToValueAtTime(0.15, now + 0.01);
+  gain.gain.linearRampToValueAtTime(0.16, now + 0.01);
 
   const o = audioCtx.createOscillator();
   o.type = 'triangle';
@@ -579,7 +541,7 @@ function playEnergySound(){
   g2.gain.setValueAtTime(0.0001, now);
   g2.gain.exponentialRampToValueAtTime(0.9, now + 0.02);
   g2.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
-  o.frequency.exponentialRampToValueAtTime(180, now + 0.6);
+  o.frequency.exponentialRampToValueAtTime(200, now + 0.6);
   o.stop(now + 0.9);
 
   const sub = audioCtx.createOscillator();
@@ -594,23 +556,21 @@ function playEnergySound(){
   sub.start(now); sub.stop(now + 0.9);
 }
 
-/* ----------------------------
-  Minimal SPA data (exhibits & exchange) - same as before
------------------------------*/
+/* -------------- SPA Data -------------- */
 const PAGES = {
-  'chem-space': { title: 'Chemistry in Space', subtitle: 'Microgravity reactions etc.', content: '<p class=\"muted\">Detailed content placeholder.</p>' },
-  'green-chemistry': { title: 'Green Chemistry Revolution', subtitle: 'Sustainable syntheses etc.', content: '<p class=\"muted\">Detailed content placeholder.</p>' },
-  'nanotech': { title: 'Nanotechnology in Medicine', subtitle: 'Nanoparticles and imaging', content: '<p class=\"muted\">Detailed content placeholder.</p>' },
-  'forensic': { title: 'Forensic & Analytical Chemistry', subtitle: 'Analytical techniques', content: '<p class=\"muted\">Detailed content placeholder.</p>' },
-  'polymer': { title: 'Polymer Art & Smart Materials', subtitle: 'Shape-memory & wearables', content: '<p class=\"muted\">Detailed content placeholder.</p>' },
-  'fireworks': { title: 'The Chemistry of Fireworks', subtitle: 'Color chemistry', content: '<p class=\"muted\">Detailed content placeholder.</p>' },
+  'chem-space': { title: 'Chemistry In Space', subtitle: 'Microgravity reactions, propellants and life-support chemistry', content: '<p class="muted">Full detailed content placeholder for Chemistry In Space. Replace with your text and images later.</p>' },
+  'green-chemistry': { title: 'Green Chemistry Revolution', subtitle: 'Sustainable syntheses and lifecycle approaches', content: '<p class="muted">Full detailed content placeholder for Green Chemistry Revolution.</p>' },
+  'nanotech': { title: 'Nanotechnology In Medicine', subtitle: 'Nanoparticles for targeting and diagnostics', content: '<p class="muted">Full detailed content placeholder for Nanotechnology in Medicine.</p>' },
+  'forensic': { title: 'Forensic & Analytical Chemistry', subtitle: 'Analytical pipelines and crime-scene simulation', content: '<p class="muted">Full detailed content placeholder for Forensic & Analytical Chemistry.</p>' },
+  'polymer': { title: 'Polymer Art & Smart Materials', subtitle: 'Shape-memory systems and wearable chemistry', content: '<p class="muted">Full detailed content placeholder for Polymer Art & Smart Materials.</p>' },
+  'fireworks': { title: 'Chemistry In Fireworks', subtitle: 'Color chemistry, oxidizers and safe demonstrative design', content: '<p class="muted">Full detailed content placeholder for The Chemistry of Fireworks.</p>' },
 
-  'marble-factory': { title: 'Marble Factory Visit', subtitle: 'Industrial materials report', content: '<p class=\"muted\">Detailed content placeholder.</p>' },
-  'spain-forensics': { title: 'Spain Forensic Labs', subtitle: 'International exchange report', content: '<p class=\"muted\">Detailed content placeholder.</p>' },
-  'cern': { title: 'CERN, Switzerland', subtitle: 'Detector & materials interactions', content: '<p class=\"muted\">Detailed content placeholder.</p>' }
+  'marble-factory': { title: 'Marble Factory Visit', subtitle: 'Industrial materials report', content: '<p class="muted">Placeholder — will add later.</p>' },
+  'spain-forensics': { title: 'Spain Forensic Labs', subtitle: 'International exchange report', content: '<p class="muted">Placeholder — will add later.</p>' },
+  'cern': { title: 'CERN, Switzerland', subtitle: 'Detector & materials interactions', content: '<p class="muted">Placeholder — will add later.</p>' }
 };
 
-/* SPA: render page */
+/* -------------- SPA functions -------------- */
 const mainView = document.getElementById('mainView');
 const detailView = document.getElementById('detailView');
 const detailContent = document.getElementById('detailContent');
@@ -623,18 +583,18 @@ function renderPage(key){
   detailView.style.display = 'block';
   detailContent.innerHTML = `
     <div class="panel detail-enter">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:18px">
-        <div style="flex:1 1 64%">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:18px;">
+        <div style="flex:1 1 64%;">
           <h1 style="font-size:28px;font-weight:900;color:var(--cyan)">${escapeHtml(page.title)}</h1>
-          <div style="margin-top:8px;color:rgba(230,247,255,0.88);font-weight:700">${escapeHtml(page.subtitle)}</div>
-          <div style="margin-top:12px;color:rgba(230,247,255,0.92)">${page.content}</div>
+          <div style="margin-top:8px;color:var(--white-cyan);font-weight:700">${escapeHtml(page.subtitle)}</div>
+          <div style="margin-top:12px;color:var(--white-cyan)">${page.content}</div>
         </div>
-        <aside style="width:320px">
+        <aside style="width:320px;">
           <div class="panel">
-            <div style="font-weight:900;color:var(--violet)">Quick Info</div>
-            <div class="muted" style="margin-top:8px">Use the Back button to return to the main exhibit list.</div>
+            <div style="font-weight:900;color:var(--white-cyan)">Quick Info</div>
+            <div class="muted" style="margin-top:8px">Use Back to return to the main view.</div>
             <div style="margin-top:12px;display:flex;gap:8px;">
-              <button class="btn btn-primary" onclick="playEnergySound();">Play energy</button>
+              <button class="btn btn-primary" onclick="playEnergySound()">Play energy</button>
               <button class="btn btn-ghost" onclick="goBack()">Back</button>
             </div>
           </div>
@@ -662,11 +622,11 @@ window.addEventListener('popstate', (e) => {
   }
 });
 
-/* Trigger energy ripple then open page */
+/* trigger energy ripple then open page */
 function triggerEnergyAndOpen(key){
   const x = window.innerWidth * 0.5;
   const y = window.innerHeight * 0.28;
-  createRipple(x,y,'#66e7ff',800,1100);
+  createRipple(x,y,'#bff',900,1100);
   playEnergySound();
   setTimeout(()=> renderPage(key), 380);
 }
@@ -679,12 +639,10 @@ function scrollSlider(dir){
   slider.scrollBy({left: dir * step, behavior:'smooth'});
 }
 
-/* ----------------------------
-  Bio overlay logic (centered inset 1cm)
------------------------------*/
+/* -------------- Bio overlay (inset 1cm) -------------- */
 const BIOS = {
-  'arjun': { name:'Arjun Tosawad', role:'President', bio:'(placeholder) Arjun coordinates presentations and safety for large demos.' },
-  'samarth': { name:'Samarth Jain', role:'Secretary', bio:'(placeholder) Samarth manages documentation and scheduling.' },
+  'arjun': { name:'Arjun Tosawad', role:'President', bio:'(placeholder) Arjun coordinates presentations and safety for live demos.' },
+  'samarth': { name:'Samarth Jain', role:'Secretary', bio:'(placeholder) Samarth handles documentation and scheduling.' },
   'vansh': { name:'Vansh Mittal', role:'Secretary', bio:'(placeholder) Vansh manages logistics and visitor flow.' },
   'aksh': { name:'Aksh Sharma', role:'Tech Head', bio:'(placeholder) Aksh leads IT, projection mapping and interactive systems.' },
   'sankalp': { name:'Mr. Sankalp Maheshwari', role:'Professor of Organic Chemistry', bio:'(placeholder) Sankalp mentors pyrotechnics & organic modules.' },
@@ -705,7 +663,7 @@ function openBio(key){
     <div style="display:flex;gap:18px;align-items:flex-start;width:100%;">
       <div style="flex:0 0 260px;">
         <div class="bio-photo">
-          <!-- placeholder portrait (you can replace src later) -->
+          <!-- placeholder portrait; replace with your photo URLs later -->
           <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=60" alt="portrait" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
         </div>
       </div>
@@ -720,17 +678,16 @@ function openBio(key){
             <button class="btn btn-ghost" onclick="closeBio()">Close ✕</button>
           </div>
         </div>
-        <p style="margin-top:12px;color:rgba(230,247,255,0.92);line-height:1.6">${escapeHtml(p.bio)}</p>
-        <p style="margin-top:10px;color:rgba(200,220,240,0.75)">(Placeholder details — edit later in the HTML.)</p>
+        <p style="margin-top:12px;color:var(--white-cyan);line-height:1.6">${escapeHtml(p.bio)}</p>
+        <p style="margin-top:10px;color:rgba(200,220,240,0.75)">(Replace this placeholder text and the portrait image later.)</p>
       </div>
     </div>
   `;
   bioContainer.appendChild(el);
 
-  // small ripple near center & audio
   const x = window.innerWidth * 0.5;
   const y = window.innerHeight * 0.5;
-  createRipple(x, y, '#b79bff', 420, 900);
+  createRipple(x, y, '#bff', 420, 900);
   playEnergySound();
 }
 
@@ -739,9 +696,7 @@ function closeBio(){
   bioContainer.style.display = 'none';
 }
 
-/* ----------------------------
-  Modal preview helper
------------------------------*/
+/* -------------- Modal helpers -------------- */
 function openModal(title, content){
   const modal = document.getElementById('modal');
   document.getElementById('modalTitle').textContent = title;
@@ -750,10 +705,10 @@ function openModal(title, content){
 }
 function closeModal(){ document.getElementById('modal').style.display = 'none'; }
 
-/* small helpers */
+/* helpers */
 function escapeHtml(s){ return (s||'').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-/* nav scroll */
+/* nav scroll wiring */
 document.querySelectorAll('.navlink').forEach(a=>{
   a.addEventListener('click', (e)=>{
     e.preventDefault();
@@ -766,23 +721,23 @@ document.querySelectorAll('.navlink').forEach(a=>{
   });
 });
 
-/* explore button */
+/* Explore button */
 document.getElementById('exploreBtn').addEventListener('click', ()=> {
   const el = document.getElementById('exhibits');
   if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
 });
 
-/* initial reveal */
+/* initial reveal & load-hash */
 window.addEventListener('DOMContentLoaded', ()=>{
   const hash = location.hash.replace('#','');
   if(hash && (hash in PAGES)) setTimeout(()=> renderPage(hash), 200);
   else document.querySelectorAll('.reveal').forEach((el,i)=> setTimeout(()=> el.classList.add('show'), i*80));
 });
 
-/* prime audio on user gesture */
+/* prime audio on first user click */
 document.addEventListener('click', function prime(){ try { if(!window._audioPrimed){ window._audioPrimed=true; const ctx=new (window.AudioContext||window.webkitAudioContext)(); const o=ctx.createOscillator(), g=ctx.createGain(); o.connect(g); g.connect(ctx.destination); g.gain.value=0.00001; o.start(); g.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime+0.01); o.stop(ctx.currentTime+0.02); } } catch(e){} document.removeEventListener('click', prime); }, {once:true});
 
-/* history initial state */
+/* history state on load */
 window.addEventListener('load', ()=>{
   const h = location.hash.replace('#','');
   if(h && (h in PAGES)){ history.replaceState({page:h}, '', `#${h}`); }
