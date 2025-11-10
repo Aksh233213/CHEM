@@ -1,777 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Chemistry Exhibition 2025 — Dark Electric</title>
-
-<!-- Inline neon-atomic favicon for reliable display -->
-<link rel="icon" href="data:image/svg+xml;utf8,
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
-  <rect width='100' height='100' rx='16' fill='%23060714'/>
-  <g transform='translate(50,50)'>
-    <ellipse rx='30' ry='10' fill='none' stroke='%23e6ffff' stroke-width='2.8' transform='rotate(0)'/>
-    <ellipse rx='30' ry='10' fill='none' stroke='%2300ffff' stroke-width='2.6' transform='rotate(60)'/>
-    <ellipse rx='30' ry='10' fill='none' stroke='%23a6f0ff' stroke-width='2.2' transform='rotate(120)'/>
-    <circle cx='0' cy='0' r='8' fill='%23e6ffff' stroke='%23ffffff' stroke-opacity='0.14' stroke-width='1.2'/>
-  </g>
-</svg>">
-
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Poppins:wght@500;700;900&display=swap" rel="stylesheet">
-
-<!-- Tailwind (optional utility) -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Chemistry Exhibition 2025</title>
 <script src="https://cdn.tailwindcss.com"></script>
-
 <style>
-:root{
-  --bg:#02030a;
-  --panel:#071022;
-  --cyan:#00f0ff;
-  --white-cyan:#e6ffff;
-  --muted:#93a0ab;
-  --glass: rgba(255,255,255,0.03);
-  --glow: 0 18px 60px rgba(0,240,255,0.12);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:Inter, Poppins, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-  background:var(--bg);
-  color:var(--white-cyan);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  min-height:100vh;
-  overflow-x:hidden;
-}
-
-/* NAV */
-nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:140;width:94%;max-width:1200px}
-.navglass{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);box-shadow:var(--glow);backdrop-filter:blur(6px)}
-.nav-left{display:flex;gap:12px;align-items:center}
-.logo-box{width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,var(--white-cyan),var(--cyan));display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226}
-.nav-links{display:flex;gap:16px;align-items:center}
-.nav-links a{color:var(--white-cyan);font-weight:700;font-size:13px;text-decoration:none;opacity:0.95}
-
-/* HERO */
-.hero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:56px 20px;position:relative;overflow:hidden}
-.hero-inner{z-index:40;max-width:1100px}
-.title{font-family:Poppins, Inter, sans-serif;font-weight:900;font-size:clamp(28px,6vw,64px);line-height:1; background:linear-gradient(90deg,var(--white-cyan),var(--cyan)); -webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.subtitle{margin-top:14px;color:rgba(230,255,255,0.9);font-size:18px;max-width:840px;margin-left:auto;margin-right:auto}
-
-/* canvas layers */
-#streaks, #ripple { position: absolute; inset:0; z-index:0; pointer-events:none; }
-
-/* MAIN */
-main{max-width:1200px;margin:86px auto 120px;padding:0 20px;position:relative;z-index:30}
-
-/* sections */
-.section-title{font-size:20px;font-weight:800;color:var(--white-cyan)}
-.panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;border:1px solid rgba(255,255,255,0.03);padding:16px;box-shadow:0 28px 60px rgba(0,0,0,0.6)}
-.muted{color:var(--muted)}
-
-/* TEAM layout, special */
-.team-grid{display:grid;gap:18px;align-items:center}
-/* layout template: top secretaries 2 cols, center president, bottom techs 2 cols */
-.team-top{display:flex;gap:18px;justify-content:center}
-.team-bottom{display:flex;gap:18px;justify-content:center}
-.person-card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01));border-radius:12px;padding:14px;min-width:220px;text-align:left;border:1px solid rgba(255,255,255,0.03);cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
-.person-card:hover{transform:translateY(-8px);box-shadow:var(--glow)}
-.p-initial{width:56px;height:56px;border-radius:10px;background:linear-gradient(90deg,var(--white-cyan),var(--cyan));display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226;margin-right:12px}
-.p-row{display:flex;align-items:center}
-.p-title{font-weight:900}
-.p-role{color:var(--muted);font-size:13px;margin-top:4px}
-
-/* PRESIDENT bigger card center */
-.president{display:flex;gap:18px;align-items:center;justify-content:center;padding:22px;border-radius:14px;background:linear-gradient(180deg, rgba(0,255,240,0.03), rgba(255,255,255,0.01));border:1px solid rgba(0,255,240,0.07);box-shadow: 0 28px 80px rgba(0,240,255,0.12)}
-.pres-initial{width:96px;height:96px;border-radius:14px;background:linear-gradient(90deg,var(--cyan),var(--white-cyan));display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226;font-size:28px;margin-right:18px}
-.pres-title{font-weight:900;font-size:22px}
-
-/* EXHIBITS slider */
-.slider{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:18px 4px;-webkit-overflow-scrolling:touch}
-.slide{min-width:74%;scroll-snap-align:center;border-radius:12px;overflow:hidden;transition:transform .28s ease, box-shadow .28s ease;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01));cursor:pointer;box-shadow:var(--glow)}
-.slide:hover{transform:translateY(-10px) scale(1.01)}
-.slide img{width:100%;height:420px;object-fit:cover;display:block;background:#07111a;}
-
-/* details */
-#detailView{display:none;padding-top:80px;padding-bottom:80px;min-height:60vh}
-.detail-panel{padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 28px 60px rgba(0,0,0,0.6)}
-.detail-title{font-size:22px;font-weight:900;color:var(--cyan)}
-
-/* BIO overlay */
-.bio-overlay{position:fixed;inset:1cm;z-index:220;background:linear-gradient(180deg, rgba(2,6,18,0.94), rgba(3,8,22,0.98));border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 60px 160px rgba(0,240,255,0.06);backdrop-filter:blur(8px);display:flex;gap:18px;align-items:flex-start;overflow:auto;transform-origin:center center}
-.bio-photo{width:260px;min-width:160px;height:260px;border-radius:10px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;color:rgba(230,247,255,0.7);font-weight:700}
-.bio-overlay canvas{position:absolute;inset:0;z-index:180;pointer-events:none;border-radius:12px}
-
-/* utility */
-.btn{display:inline-block;padding:10px 14px;border-radius:999px;font-weight:800;cursor:pointer}
-.btn-primary{background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(0,240,255,0.06));color:var(--bg);box-shadow:var(--glow)}
-.btn-ghost{background:transparent;color:var(--white-cyan);border:1px solid rgba(255,255,255,0.05)}
-
-/* responsive */
-@media (max-width:980px){
-  .slide{min-width:92%}
-  .pres-initial{width:76px;height:76px;font-size:22px}
-  .pres-title{font-size:18px}
-  .bio-photo{width:180px;height:180px}
-  .nav-links{display:none}
-  nav{left:8px;transform:none;width:calc(100% - 16px)}
-}
+html{scroll-behavior:smooth;}
+body{background:#030617;color:#e2e8f0;font-family:'Segoe UI',sans-serif;overflow-x:hidden;}
+canvas#streaks{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;}
+.section{padding:6rem 1rem;}
+.glow{box-shadow:0 0 20px #38bdf8;}
+.fade-enter{animation:fadeIn 0.6s ease forwards;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 </style>
 </head>
 <body>
 
-<!-- audio (internet-hosted short zap/pulse, plays on interactions) -->
-<!-- Using Google Actions sounds (publicly served) as lightweight sources; browser may cache -->
-<audio id="clickSound" crossorigin="anonymous">
-  <source src="https://actions.google.com/sounds/v1/alarms/laser_beam.ogg" type="audio/ogg">
-  <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
-</audio>
+<canvas id="streaks"></canvas>
 
-<!-- NAV -->
-<nav>
-  <div class="navglass mx-auto" style="max-width:1200px">
-    <div class="nav-left">
-      <div class="logo-box">CE</div>
-      <div>
-        <div style="font-weight:900;color:var(--white-cyan)">Chemistry Exhibition</div>
-        <div style="font-size:12px;color:rgba(230,255,255,0.7)">2025 — Department of Chemical Sciences</div>
-      </div>
-    </div>
-    <div class="nav-links">
-      <a href="#" data-scroll="home">Home</a>
-      <a href="#team" data-scroll="team">Team</a>
-      <a href="#exhibits" data-scroll="exhibits">Exhibits</a>
-      <a href="#exchange" data-scroll="exchange">Exchange</a>
-      <a href="#contact" data-scroll="contact">Contact</a>
-    </div>
+<nav class="bg-cyan-900/70 p-6 fixed top-0 left-0 w-full z-50 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-cyan-300">CHEMISTRY EXHIBITION 2025</h1>
+    <ul class="flex space-x-6 text-lg text-cyan-100">
+      <li><a href="#about" class="hover:text-white">About</a></li>
+      <li><a href="#team" class="hover:text-white">Team</a></li>
+      <li><a href="#exhibits" class="hover:text-white">Exhibits</a></li>
+      <li><a href="#exchange" class="hover:text-white">Exchange</a></li>
+      <li><a href="#contact" class="hover:text-white">Contact</a></li>
+    </ul>
   </div>
 </nav>
 
-<!-- HERO with streaks canvas -->
-<header id="home" class="hero">
-  <canvas id="streaks"></canvas>
-  <canvas id="ripple"></canvas>
-
-  <div class="hero-inner">
-    <div class="title">CHEMISTRY EXHIBITION 2025</div>
-    <div class="subtitle">A high-energy showcase: exhibits, field exchanges and live demonstrations. Click exhibits or team members to open detailed views.</div>
-    <div style="margin-top:20px;display:flex;gap:12px;justify-content:center">
-      <button class="btn btn-primary" id="gotoExhibits">Explore Exhibits</button>
-      <a class="btn btn-ghost" href="#exchange">Exchange</a>
-    </div>
-  </div>
-</header>
-
-<main id="mainView">
-
-  <!-- TEAM SECTION -->
-  <section id="team" style="margin-top:24px" class="mb-10">
-    <div style="display:flex;flex-direction:column;gap:18px;align-items:center">
-      <div style="text-align:center">
-        <div class="section-title">Student Team</div>
-        <div class="muted" style="margin-top:6px">Secretaries above • President centered • IT & Tech Heads below</div>
-      </div>
-
-      <!-- TOP: Secretaries -->
-      <div class="team-top" style="width:100%;max-width:980px;display:flex;justify-content:center;">
-        <div class="person-card panel" tabindex="0" role="button" onclick="openBio('samarth')" onkeypress="if(event.key==='Enter') openBio('samarth')">
-          <div class="p-row">
-            <div class="p-initial">S</div>
-            <div>
-              <div class="p-title">Samarth Jain</div>
-              <div class="p-role">Secretary</div>
-              <div class="muted" style="margin-top:8px">Documentation & scheduling lead; visitor coordination.</div>
-            </div>
-          </div>
-        </div>
-
-        <div style="width:18px"></div>
-
-        <div class="person-card panel" tabindex="0" role="button" onclick="openBio('vansh')" onkeypress="if(event.key==='Enter') openBio('vansh')">
-          <div class="p-row">
-            <div class="p-initial">V</div>
-            <div>
-              <div class="p-title">Vansh Mittal</div>
-              <div class="p-role">Secretary</div>
-              <div class="muted" style="margin-top:8px">Assists documentation, communications and logistics.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CENTER: PRESIDENT -->
-      <div style="width:100%;display:flex;justify-content:center">
-        <div class="president" style="max-width:760px;">
-          <div class="pres-initial">A</div>
-          <div>
-            <div class="pres-title">Arjun Tosawad</div>
-            <div class="muted" style="margin-top:6px">President</div>
-            <div style="margin-top:10px;color:rgba(230,255,255,0.9)">Leads coordination, presentation design and safety for large-scale demonstrations.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- BOTTOM: IT & Tech Heads -->
-      <div class="team-bottom" style="width:100%;max-width:980px;display:flex;justify-content:center;">
-        <div class="person-card panel" tabindex="0" role="button" onclick="openBio('aksh')" onkeypress="if(event.key==='Enter') openBio('aksh')">
-          <div class="p-row">
-            <div class="p-initial">AK</div>
-            <div>
-              <div class="p-title">Aksh Sharma</div>
-              <div class="p-role">IT & Tech Head</div>
-              <div class="muted" style="margin-top:8px">Responsible for interactive displays and projection mapping.</div>
-            </div>
-          </div>
-        </div>
-
-        <div style="width:18px"></div>
-
-        <div class="person-card panel" tabindex="0" role="button" onclick="openBio('harsh')" onkeypress="if(event.key==='Enter') openBio('harsh')">
-          <div class="p-row">
-            <div class="p-initial">H</div>
-            <div>
-              <div class="p-title">Harshvardhan Singh Udawat</div>
-              <div class="p-role">IT & Tech Head</div>
-              <div class="muted" style="margin-top:8px">Supports tech integration, live visual effects and AV systems.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- TEACHERS -->
-  <section id="teachers" class="mb-10">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap">
-      <div style="flex:1;min-width:260px">
-        <div class="section-title">Faculty & Mentors</div>
-        <div class="muted" style="margin-top:6px">Experienced faculty guiding experiments and safety.</div>
-      </div>
-
-      <div style="display:flex;gap:12px;flex-wrap:wrap;flex:2;justify-content:flex-end">
-        <div class="panel person-card" tabindex="0" role="button" onclick="openBio('sankalp')" onkeypress="if(event.key==='Enter') openBio('sankalp')">
-          <div style="font-weight:900;color:var(--cyan)">Mr. Sankalp Maheshwari</div>
-          <div class="muted" style="margin-top:6px">Professor of Organic Chemistry</div>
-        </div>
-        <div class="panel person-card" tabindex="0" role="button" onclick="openBio('ankita')" onkeypress="if(event.key==='Enter') openBio('ankita')">
-          <div style="font-weight:900;color:var(--cyan)">Mrs. Ankita Sharma</div>
-          <div class="muted" style="margin-top:6px">Associate Professor — Materials & Nanotech</div>
-        </div>
-        <div class="panel person-card" tabindex="0" role="button" onclick="openBio('sudeep')" onkeypress="if(event.key==='Enter') openBio('sudeep')">
-          <div style="font-weight:900;color:var(--cyan)">Mr. Sudeep XYZ</div>
-          <div class="muted" style="margin-top:6px">Lecturer — Physical & Analytical Chemistry</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXHIBITS -->
-  <section id="exhibits" class="mb-12">
-    <div style="display:flex;justify-content:space-between;align-items:center">
-      <div>
-        <div class="section-title">Featured Exhibits</div>
-        <div class="muted" style="margin-top:6px">Click a slide to open the exhibit's full detail view (same tab). A visual energy ripple will animate the transition.</div>
-      </div>
-      <div style="display:flex;gap:10px">
-        <button onclick="scrollSlider(-1)" class="px-3 py-2 rounded bg-white/5">Prev</button>
-        <button onclick="scrollSlider(1)" class="px-3 py-2 rounded" style="background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(0,240,255,0.06));color:var(--bg)">Next</button>
-      </div>
-    </div>
-
-    <div class="slider mt-6" id="slider">
-
-      <!-- Chemistry In Space -->
-      <div class="slide" tabindex="0" role="button" onclick="triggerEnergyAndOpen('chem-space')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('chem-space')">
-        <img src="https://ls.wisc.edu/assets/slideshow/_645x415_crop_center-center_none_ns/chemistry-in-space-FD-Getty-Images-645x415.jpg" alt="Chemistry in Space">
-        <div style="padding:12px">
-          <div style="font-weight:900;color:var(--white-cyan)">Chemistry In Space</div>
-          <div class="muted" style="margin-top:6px">Astrochemistry: microgravity reactions, propellants & life-support systems.</div>
-        </div>
-      </div>
-
-      <!-- Green Chemistry Revolution -->
-      <div class="slide" tabindex="0" role="button" onclick="triggerEnergyAndOpen('green-chemistry')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('green-chemistry')">
-        <img src="https://www.pumpsandsystems.com/sites/default/files/2023-10/CS_Mills-Winfield_IMG1_980x400.jpg" alt="Green Chemistry">
-        <div style="padding:12px">
-          <div style="font-weight:900;color:var(--white-cyan)">Green Chemistry Revolution</div>
-          <div class="muted" style="margin-top:6px">Sustainable syntheses, recyclable catalysts and biopolymers.</div>
-        </div>
-      </div>
-
-      <!-- Forensic And Analytical Chemistry -->
-      <div class="slide" tabindex="0" role="button" onclick="triggerEnergyAndOpen('forensic')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('forensic')">
-        <img src="https://www.cgc.ac.in/public/tiny-uploads/_forensic%20science.jpg" alt="Forensic Chemistry">
-        <div style="padding:12px">
-          <div style="font-weight:900;color:var(--white-cyan)">Forensic & Analytical Chemistry</div>
-          <div class="muted" style="margin-top:6px">Crime-scene simulation and analytical techniques.</div>
-        </div>
-      </div>
-
-      <!-- Polymer Art And Smart Materials -->
-      <div class="slide" tabindex="0" role="button" onclick="triggerEnergyAndOpen('polymer')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('polymer')">
-        <img src="https://www.bruker.com/pt/products-and-solutions/mr/chemistry/polymer-chemistry/_jcr_content/root/overviewstage/desktopImage.coreimg.82.1920.jpeg/1733858510945/polymer-chemistry.jpeg0CBUQjRxqFwoTCPiunM7s5pADFQAAAAAdAAAAABAE" alt="Polymer Art">
-        <div style="padding:12px">
-          <div style="font-weight:900;color:var(--white-cyan)">Polymer Art & Smart Materials</div>
-          <div class="muted" style="margin-top:6px">Shape-memory polymers, responsive hydrogels & wearables.</div>
-        </div>
-      </div>
-
-      <!-- Chemistry In Fireworks -->
-      <div class="slide" tabindex="0" role="button" onclick="triggerEnergyAndOpen('fireworks')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('fireworks')">
-        <img src="https://scx2.b-cdn.net/gfx/news/hires/2017/chemistexpla.jpg" alt="Fireworks Chemistry">
-        <div style="padding:12px">
-          <div style="font-weight:900;color:var(--white-cyan)">Chemistry In Fireworks</div>
-          <div class="muted" style="margin-top:6px">Metal salts, oxidizers and safe demonstration design.</div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- EXCHANGE placeholder -->
-  <section id="exchange" class="mb-12">
-    <div style="display:flex;justify-content:space-between;align-items:center">
-      <div>
-        <div class="section-title">Exchange & Industry Visits</div>
-        <div class="muted" style="margin-top:6px">(Placeholder — you will add details about marble factory, CERN, Spain forensic trips, etc.)</div>
-      </div>
-      <div class="muted" style="font-size:13px">Details to be added later</div>
-    </div>
-  </section>
-
-  <!-- SCHEDULE -->
-  <section id="schedule" class="mb-12">
-    <div>
-      <div class="section-title">Event Schedule</div>
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px">
-        <div class="panel">9:00 AM — Opening Ceremony & Keynote</div>
-        <div class="panel">10:00 AM — Guided Exhibit Walkthrough</div>
-        <div class="panel">12:30 PM — Lunch & Poster Talks</div>
-        <div class="panel">2:00 PM — Interactive Demonstrations</div>
-        <div class="panel">4:00 PM — Awards & Closing Remarks</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="mb-24">
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap">
-      <div>
-        <div class="section-title">Contact & Inquiries</div>
-        <div class="muted" style="margin-top:8px">For collaborations, media requests or participation contact:</div>
-        <div style="margin-top:8px;color:var(--cyan);font-weight:800">chemexpo2025@school.edu</div>
-      </div>
-      <div class="panel" style="min-width:220px">
-        <div style="font-weight:900;color:var(--cyan)">Venue</div>
-        <div class="muted" style="margin-top:6px">Main campus — Exhibition Hall & Research Labs</div>
-      </div>
-    </div>
-  </section>
-
-  <footer style="text-align:center;color:rgba(230,255,255,0.6);padding-bottom:40px;margin-top:28px">© 2025 Chemistry Exhibition — Department of Chemical Sciences</footer>
-</main>
-
-<!-- DETAIL VIEW (same-page dynamic) -->
-<section id="detailView" style="display:none;padding-top:80px;padding-bottom:80px;min-height:60vh;position:relative;z-index:50">
-  <div id="detailContent" style="max-width:1100px;margin:0 auto;padding:18px"></div>
+<section id="about" class="section mt-20 text-center">
+  <h2 class="text-5xl font-bold text-cyan-400 mb-6">About the Exhibition</h2>
+  <p class="text-xl max-w-4xl mx-auto text-gray-300">The Chemistry Exhibition 2025 celebrates innovation in science and showcases experiments exploring the frontiers of chemical discovery, sustainability, and technology. Visitors experience interactive displays, creative research, and real-world chemistry applications.</p>
 </section>
 
-<!-- BIO overlay container -->
-<div id="bioContainer" style="display:none"></div>
-
-<!-- simple modal -->
-<div id="modal" style="display:none;position:fixed;inset:0;align-items:center;justify-content:center;background:rgba(2,6,23,0.75);z-index:260;padding:28px">
-  <div style="width:100%;max-width:880px;border-radius:12px;background:linear-gradient(180deg,#071022,#071426);border:1px solid rgba(255,255,255,0.04);padding:18px;color:var(--white-cyan)">
-    <div style="display:flex;justify-content:space-between;align-items:center">
-      <div>
-        <div id="modalTitle" style="font-weight:900;color:var(--cyan)"></div>
-      </div>
-      <div><button onclick="closeModal()" style="padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--white-cyan)">Close</button></div>
+<section id="team" class="section text-center">
+  <h2 class="text-5xl font-bold text-cyan-400 mb-10">Meet Our Team</h2>
+  <div class="flex flex-col items-center space-y-8">
+    <div class="text-center">
+      <h3 class="text-4xl font-extrabold text-white mb-2">Arjun Tosawad</h3>
+      <p class="text-cyan-300 text-xl">President</p>
     </div>
-    <div id="modalContent" style="margin-top:12px;color:rgba(230,255,255,0.9);line-height:1.6"></div>
+    <div class="flex flex-wrap justify-center gap-10">
+      <div>
+        <h3 class="text-3xl font-semibold text-white">Samarth Jain</h3>
+        <p class="text-cyan-300">Secretary</p>
+      </div>
+      <div>
+        <h3 class="text-3xl font-semibold text-white">Vansh Mittal</h3>
+        <p class="text-cyan-300">Secretary</p>
+      </div>
+    </div>
+    <div class="flex flex-wrap justify-center gap-10">
+      <div>
+        <h3 class="text-2xl font-semibold text-white">Aksh Sharma</h3>
+        <p class="text-cyan-300">IT & Tech Head</p>
+      </div>
+      <div>
+        <h3 class="text-2xl font-semibold text-white">Harshvardhan Singh Udawat</h3>
+        <p class="text-cyan-300">IT & Tech Head</p>
+      </div>
+    </div>
+    <div class="mt-10">
+      <h3 class="text-3xl font-semibold text-white">Sankalp Sir</h3>
+      <p class="text-cyan-300">Faculty Mentor</p>
+    </div>
   </div>
-</div>
+</section>
+
+<section id="exhibits" class="section text-center">
+  <h2 class="text-5xl font-bold text-cyan-400 mb-12">Exhibits</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
+
+    <!-- Exhibit 1 -->
+    <div onclick="toggleDetail('ex1')" class="cursor-pointer bg-gray-900 p-6 rounded-3xl glow hover:scale-105 transition">
+      <img src="https://ls.wisc.edu/assets/slideshow/_645x415_crop_center-center_none_ns/chemistry-in-space-FD-Getty-Images-645x415.jpg" class="rounded-xl mb-4 w-full h-60 object-cover">
+      <h3 class="text-2xl font-semibold text-white">Chemistry In Space</h3>
+      <p class="text-cyan-200">Exploring chemical processes beyond Earth.</p>
+      <div id="ex1" class="hidden text-left mt-6 text-gray-200 fade-enter bg-gray-800 p-4 rounded-xl">
+        <img src="https://ls.wisc.edu/assets/slideshow/_645x415_crop_center-center_none_ns/chemistry-in-space-FD-Getty-Images-645x415.jpg" class="w-full rounded mb-4">
+        <p><strong>Overview:</strong> Investigate molecular formation in cosmic environments, from star birth clouds to planetary atmospheres.</p>
+        <p><strong>Team:</strong> SpaceChem — guided by Dr. Sankalp.</p>
+      </div>
+    </div>
+
+    <!-- Exhibit 2 -->
+    <div onclick="toggleDetail('ex2')" class="cursor-pointer bg-gray-900 p-6 rounded-3xl glow hover:scale-105 transition">
+      <img src="https://www.pumpsandsystems.com/sites/default/files/2023-10/CS_Mills-Winfield_IMG1_980x400.jpg" class="rounded-xl mb-4 w-full h-60 object-cover">
+      <h3 class="text-2xl font-semibold text-white">Green Chemistry Revolution</h3>
+      <p class="text-cyan-200">Sustainable innovations in chemical processes.</p>
+      <div id="ex2" class="hidden text-left mt-6 text-gray-200 fade-enter bg-gray-800 p-4 rounded-xl">
+        <img src="https://www.pumpsandsystems.com/sites/default/files/2023-10/CS_Mills-Winfield_IMG1_980x400.jpg" class="w-full rounded mb-4">
+        <p><strong>Overview:</strong> Research on minimizing hazardous waste and improving renewable chemical manufacturing.</p>
+        <p><strong>Team:</strong> EcoChem — mentored by Dr. Sankalp.</p>
+      </div>
+    </div>
+
+    <!-- Exhibit 3 -->
+    <div onclick="toggleDetail('ex3')" class="cursor-pointer bg-gray-900 p-6 rounded-3xl glow hover:scale-105 transition">
+      <img src="https://www.cgc.ac.in/public/tiny-uploads/_forensic%20science.jpg" class="rounded-xl mb-4 w-full h-60 object-cover">
+      <h3 class="text-2xl font-semibold text-white">Forensic and Analytical Chemistry</h3>
+      <p class="text-cyan-200">Unveiling truth through chemical evidence.</p>
+      <div id="ex3" class="hidden text-left mt-6 text-gray-200 fade-enter bg-gray-800 p-4 rounded-xl">
+        <img src="https://www.cgc.ac.in/public/tiny-uploads/_forensic%20science.jpg" class="w-full rounded mb-4">
+        <p><strong>Overview:</strong> Analytical tools used in crime investigation and environmental monitoring.</p>
+        <p><strong>Team:</strong> ForensiChem — mentored by Dr. Sankalp.</p>
+      </div>
+    </div>
+
+    <!-- Exhibit 4 -->
+    <div onclick="toggleDetail('ex4')" class="cursor-pointer bg-gray-900 p-6 rounded-3xl glow hover:scale-105 transition">
+      <img src="https://www.bruker.com/pt/products-and-solutions/mr/chemistry/polymer-chemistry/_jcr_content/root/overviewstage/desktopImage.coreimg.82.1920.jpeg/1733858510945/polymer-chemistry.jpeg" class="rounded-xl mb-4 w-full h-60 object-cover">
+      <h3 class="text-2xl font-semibold text-white">Polymer Art and Smart Materials</h3>
+      <p class="text-cyan-200">Blending creativity with chemistry.</p>
+      <div id="ex4" class="hidden text-left mt-6 text-gray-200 fade-enter bg-gray-800 p-4 rounded-xl">
+        <img src="https://www.bruker.com/pt/products-and-solutions/mr/chemistry/polymer-chemistry/_jcr_content/root/overviewstage/desktopImage.coreimg.82.1920.jpeg/1733858510945/polymer-chemistry.jpeg" class="w-full rounded mb-4">
+        <p><strong>Overview:</strong> Smart polymers responding to light and temperature integrated into functional art forms.</p>
+        <p><strong>Team:</strong> PolyArt — mentored by Dr. Sankalp.</p>
+      </div>
+    </div>
+
+    <!-- Exhibit 5 -->
+    <div onclick="toggleDetail('ex5')" class="cursor-pointer bg-gray-900 p-6 rounded-3xl glow hover:scale-105 transition">
+      <img src="https://scx2.b-cdn.net/gfx/news/hires/2017/chemistexpla.jpg" class="rounded-xl mb-4 w-full h-60 object-cover">
+      <h3 class="text-2xl font-semibold text-white">Chemistry in Fireworks</h3>
+      <p class="text-cyan-200">Spectacular colors through reactions.</p>
+      <div id="ex5" class="hidden text-left mt-6 text-gray-200 fade-enter bg-gray-800 p-4 rounded-xl">
+        <img src="https://scx2.b-cdn.net/gfx/news/hires/2017/chemistexpla.jpg" class="w-full rounded mb-4">
+        <p><strong>Overview:</strong> Metal ions and combustion create the breathtaking color displays of pyrotechnics.</p>
+        <p><strong>Team:</strong> Spectra — mentored by Dr. Sankalp.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="exchange" class="section text-center">
+  <h2 class="text-5xl font-bold text-cyan-400 mb-8">Exchange Programs</h2>
+  <p class="max-w-4xl mx-auto text-xl text-gray-300">Students visited a marble factory observing crystal formation and later explored forensic laboratories in Spain and CERN, Switzerland, understanding applied analytical and nuclear chemistry in real contexts.</p>
+</section>
+
+<section id="contact" class="section text-center">
+  <h2 class="text-5xl font-bold text-cyan-400 mb-6">Contact</h2>
+  <p class="text-xl text-gray-300 mb-4">For details or collaborations, contact:</p>
+  <a href="mailto:aksh2011@gmail.com" class="text-cyan-300 hover:underline text-xl">aksh2011@gmail.com</a>
+</section>
+
+<footer class="bg-cyan-900/70 text-center py-6 text-gray-300">
+  &copy; 2025 Chemistry Exhibition — Department of Chemical Sciences
+</footer>
 
 <script>
-/* ---------------------------
-   Helper utilities
-   --------------------------- */
-function $(sel){return document.querySelector(sel)}
-function $all(sel){return Array.from(document.querySelectorAll(sel))}
-function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+// light streaks background
+const c=document.getElementById('streaks'),x=c.getContext('2d');
+let w,h;function resize(){w=c.width=innerWidth;h=c.height=innerHeight;}
+window.addEventListener('resize',resize);resize();
+let lines=Array(50).fill().map(()=>({x:Math.random()*w,y:Math.random()*h,l:Math.random()*1.5+0.5,s:Math.random()*2+1}));
+function draw(){
+x.fillStyle='rgba(0,0,0,0.2)';x.fillRect(0,0,w,h);
+x.strokeStyle='rgba(56,189,248,0.7)';x.lineWidth=1.5;x.beginPath();
+lines.forEach(p=>{x.moveTo(p.x,p.y);p.y+=p.s;if(p.y>h)p.y=0;x.lineTo(p.x,p.y+p.l);});
+x.stroke();requestAnimationFrame(draw);}draw();
 
-/* click sound (internet-hosted) */
-const clickSound = document.getElementById('clickSound');
-function playClick() {
-  try {
-    clickSound.currentTime = 0;
-    clickSound.volume = 0.22;
-    clickSound.play().catch(()=>{/* autoplay policy: requires gesture; fine */});
-  } catch(e){}
+function toggleDetail(id){
+const e=document.getElementById(id);
+e.classList.toggle('hidden');
 }
-
-/* ---------------------------
-   Fast-moving light streaks background
-   --------------------------- */
-(()=> {
-  const canvas = document.getElementById('streaks');
-  const ctx = canvas.getContext('2d');
-  const dpr = Math.max(1, window.devicePixelRatio||1);
-  let w = 0, h = 0;
-  let streaks = [];
-
-  function resize(){
-    w = canvas.width = Math.max(window.innerWidth, document.documentElement.clientWidth) * dpr;
-    h = canvas.height = Math.max(window.innerHeight, document.documentElement.clientHeight) * dpr;
-    canvas.style.width = (w/dpr)+'px';
-    canvas.style.height = (h/dpr)+'px';
-  }
-
-  function rand(a,b){return Math.random()*(b-a)+a}
-
-  function init(){
-    streaks = [];
-    const count = Math.round((w/dpr)*(h/dpr)/22000);
-    for(let i=0;i<count;i++){
-      streaks.push({
-        x: rand(-w*0.2,w*1.2),
-        y: rand(-h*0.1,h*1.1),
-        len: rand(60,260)*dpr,
-        vx: rand(1.6,6.5)*dpr,
-        vy: rand(-0.3,0.3)*dpr,
-        weight: rand(0.6,2.8)*dpr,
-        alpha: rand(0.06,0.25),
-        hue: rand(180,200)
-      });
-    }
-  }
-
-  function draw(){
-    ctx.clearRect(0,0,w,h);
-    // faint background glow
-    const g = ctx.createLinearGradient(0,0,w,0);
-    g.addColorStop(0,'rgba(0,240,255,0.01)');
-    g.addColorStop(1,'rgba(230,255,255,0.01)');
-    ctx.fillStyle = g;
-    ctx.fillRect(0,0,w,h);
-
-    for(const s of streaks){
-      ctx.beginPath();
-      ctx.moveTo(s.x, s.y);
-      ctx.lineTo(s.x - s.len*0.6, s.y - s.len*0.06);
-      ctx.lineWidth = s.weight;
-      ctx.strokeStyle = `rgba(180,255,255,${s.alpha})`;
-      ctx.shadowBlur = clamp(s.weight*4, 0, 20);
-      ctx.shadowColor = 'rgba(0,240,255,0.4)';
-      ctx.stroke();
-    }
-  }
-
-  function step(){
-    for(const s of streaks){
-      s.x += s.vx;
-      s.y += s.vy;
-      if(s.x - s.len > w + 200) {
-        s.x = -200 - rand(0, w*0.2);
-        s.y = rand(-h*0.2, h*1.1);
-        s.vx = rand(1.6,6.5)*dpr;
-        s.len = rand(60,260)*dpr;
-        s.alpha = rand(0.06,0.25);
-      }
-    }
-    draw();
-    requestAnimationFrame(step);
-  }
-
-  window.addEventListener('resize', () => { resize(); init(); });
-  resize(); init(); step();
-})();
-
-/* ---------------------------
-   Ripple canvas (visual energy pulses)
-   --------------------------- */
-const rippleCan = document.getElementById('ripple');
-const rc = rippleCan.getContext ? rippleCan.getContext('2d') : null;
-const DPR = Math.max(1, window.devicePixelRatio||1);
-function resizeRipple(){
-  rippleCan.width = Math.max(window.innerWidth, document.documentElement.clientWidth) * DPR;
-  rippleCan.height = Math.max(window.innerHeight, document.documentElement.clientHeight) * DPR;
-  rippleCan.style.width = (rippleCan.width/DPR)+'px';
-  rippleCan.style.height = (rippleCan.height/DPR)+'px';
-}
-resizeRipple();
-window.addEventListener('resize', resizeRipple);
-let pulses = [];
-function createPulse(x,y,color='#bff',maxR=800,duration=900){
-  pulses.push({x:x*DPR,y:y*DPR,t:performance.now(),maxR,duration,color});
-}
-function drawPulses(){
-  if(!rc) return;
-  rc.clearRect(0,0,rippleCan.width,rippleCan.height);
-  const now = performance.now();
-  for(let i=pulses.length-1;i>=0;i--){
-    const p = pulses[i];
-    const elapsed = now - p.t;
-    const prog = Math.min(1, elapsed / p.duration);
-    const r = p.maxR * (1 - Math.pow(1-prog, 3));
-    const a = 0.9 * (1 - prog);
-    rc.beginPath();
-    rc.lineWidth = 10 * (1-prog) + 1;
-    rc.strokeStyle = `rgba(180,255,255,${a})`;
-    rc.arc(p.x, p.y, r, 0, Math.PI*2);
-    rc.stroke();
-    if(prog >= 1) pulses.splice(i,1);
-  }
-  requestAnimationFrame(drawPulses);
-}
-drawPulses();
-
-/* ---------------------------
-   SPA: exhibits and pages
-   --------------------------- */
-const PAGES = {
-  'chem-space': {
-    title:'Chemistry In Space',
-    subtitle:'Microgravity reactions, propellants and life-support chemistry',
-    content:`<p class="muted">Detailed content placeholder for Chemistry In Space. Replace with full text and photos later. Example points to add: ISS experiments, propellant chemistry, in-situ resource utilization (ISRU), spectroscopy of celestial ices, microgravity kinetics.</p>
-             <h4 style="margin-top:12px;color:var(--cyan)">Field Notes & Photos</h4>
-             <div style="margin-top:8px;color:var(--white-cyan)">[Photo placeholders — add images & captions]</div>`
-  },
-  'green-chemistry': {
-    title:'Green Chemistry Revolution',
-    subtitle:'Sustainable syntheses and lifecycle approaches',
-    content:`<p class="muted">Detailed content placeholder — topics: atom economy, renewable feedstocks, catalytic recycling, biodegradable polymers, energy-efficient routes.</p>`
-  },
-  'forensic': {
-    title:'Forensic & Analytical Chemistry',
-    subtitle:'Crime-scene simulation and analytical pipelines',
-    content:`<p class="muted">Detailed content placeholder — topics: chromatography, mass spectrometry, evidence handling, case studies from exchange visits.</p>`
-  },
-  'polymer': {
-    title:'Polymer Art & Smart Materials',
-    subtitle:'Shape-memory materials and responsive systems',
-    content:`<p class="muted">Detailed content placeholder — demonstrations of shape-memory polymers, responsive hydrogels and wearable devices.</p>`
-  },
-  'fireworks': {
-    title:'Chemistry In Fireworks',
-    subtitle:'Color chemistry: metal salts, oxidizers & safe demonstration design',
-    content:`<p class="muted">Detailed content placeholder — how metal ions produce color, safety protocols, thermochemical aspects and audience-safe demos.</p>`
-  }
-};
-
-const mainView = document.getElementById('mainView');
-const detailView = document.getElementById('detailView');
-const detailContent = document.getElementById('detailContent');
-
-function escapeHtml(s){ return (s||'').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-function renderPage(key){
-  const p = PAGES[key];
-  if(!p) return;
-  history.pushState({page:key}, '', `#${key}`);
-  mainView.style.display = 'none';
-  detailView.style.display = 'block';
-  detailContent.innerHTML = `
-    <div class="detail-panel">
-      <div style="display:flex;gap:18px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
-        <div style="flex:1;min-width:320px">
-          <div class="detail-title">${escapeHtml(p.title)}</div>
-          <div style="margin-top:8px;color:var(--white-cyan);font-weight:700">${escapeHtml(p.subtitle)}</div>
-          <div style="margin-top:14px;color:var(--white-cyan)">${p.content}</div>
-        </div>
-        <aside style="width:320px">
-          <div class="panel">
-            <div style="font-weight:900;color:var(--white-cyan)">Quick Info</div>
-            <div class="muted" style="margin-top:8px">Add duration, location, team & mentor info here.</div>
-            <div style="margin-top:12px;display:flex;gap:8px">
-              <button class="btn btn-primary" onclick="createPulse(window.innerWidth*0.5, window.innerHeight*0.28, '#bff', 700, 1000); playClick()">Visual</button>
-              <button class="btn btn-ghost" onclick="goBack()">Back</button>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </div>
-  `;
-  detailView.scrollIntoView({behavior:'smooth', block:'start'});
-}
-
-function goBack(){
-  history.pushState({page:'main'}, '', location.pathname);
-  detailView.style.display = 'none';
-  mainView.style.display = 'block';
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-window.addEventListener('popstate', (e) => {
-  const s = e.state;
-  if(!s || s.page === 'main'){ detailView.style.display = 'none'; mainView.style.display = 'block'; }
-  else renderPage(s.page);
-});
-
-/* trigger energy visual then open page */
-function triggerEnergyAndOpen(key){
-  const x = window.innerWidth * 0.5;
-  const y = window.innerHeight * 0.28;
-  createPulse(x,y,'#bff',900,1100);
-  playClick();
-  setTimeout(()=> renderPage(key), 380);
-}
-
-/* slider controls */
-const slider = document.getElementById('slider');
-function scrollSlider(dir){
-  if(!slider) return;
-  const step = slider.clientWidth * 0.78;
-  slider.scrollBy({left:dir*step,behavior:'smooth'});
-}
-
-/* ---------------------------
-   Bio overlay (1cm inset) with glow ripple inside
-   --------------------------- */
-const BIOS = {
-  arjun:{name:'Arjun Tosawad', role:'President', bio:'(placeholder) Arjun coordinates presentations and safety for live demos.'},
-  samarth:{name:'Samarth Jain', role:'Secretary', bio:'(placeholder) Samarth handles documentation and scheduling.'},
-  vansh:{name:'Vansh Mittal', role:'Secretary', bio:'(placeholder) Vansh manages logistics and visitor flow.'},
-  aksh:{name:'Aksh Sharma', role:'IT & Tech Head', bio:'(placeholder) Aksh leads IT, projection mapping and interactive systems.'},
-  harsh:{name:'Harshvardhan Singh Udawat', role:'IT & Tech Head', bio:'(placeholder) Harsh supports AV systems and live visual effects.'},
-  sankalp:{name:'Mr. Sankalp Maheshwari', role:'Professor of Organic Chemistry', bio:'(placeholder) Sankalp mentors pyrotechnics & organic modules.'},
-  ankita:{name:'Mrs. Ankita Sharma', role:'Associate Professor — Materials & Nanotech', bio:'(placeholder) Ankita mentors nanotech exhibits.'},
-  sudeep:{name:'Mr. Sudeep XYZ', role:'Lecturer — Physical & Analytical Chemistry', bio:'(placeholder) Sudeep leads forensic demos.'}
-};
-
-const bioContainer = document.getElementById('bioContainer');
-
-function openBio(key){
-  const p = BIOS[key];
-  if(!p) return;
-  // clear existing
-  bioContainer.innerHTML = '';
-  bioContainer.style.display = 'block';
-
-  const el = document.createElement('div');
-  el.className = 'bio-overlay';
-  el.innerHTML = `
-    <canvas class="overlay-canvas"></canvas>
-    <div style="display:flex;gap:18px;align-items:flex-start;width:100%;">
-      <div style="flex:0 0 260px;">
-        <div class="bio-photo">
-          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=60" alt="portrait" style="width:100%;height:100%;object-fit:cover;border-radius:8px">
-        </div>
-      </div>
-      <div style="flex:1 1 auto;position:relative;z-index:195;">
-        <div style="display:flex;justify-content:space-between;align-items:start">
-          <div>
-            <div style="font-weight:900;font-size:20px;color:var(--cyan)">${escapeHtml(p.name)}</div>
-            <div class="muted" style="margin-top:6px">${escapeHtml(p.role)}</div>
-          </div>
-          <div style="display:flex;gap:10px">
-            <button class="btn btn-primary" onclick="createPulse(window.innerWidth*0.5, window.innerHeight*0.5, '#bff', 420, 900); playClick()">Glow</button>
-            <button class="btn btn-ghost" onclick="closeBio()">Close ✕</button>
-          </div>
-        </div>
-        <div style="margin-top:12px;color:var(--white-cyan);line-height:1.6">${escapeHtml(p.bio)}</div>
-        <div style="margin-top:10px;color:rgba(200,220,240,0.75)">(Replace portrait & bio text later.)</div>
-      </div>
-    </div>
-  `;
-  bioContainer.appendChild(el);
-
-  // overlay ripple canvas
-  const overlayCanvas = el.querySelector('.overlay-canvas');
-  const dpr = Math.max(1, window.devicePixelRatio||1);
-  overlayCanvas.width = Math.max(1, el.clientWidth) * dpr;
-  overlayCanvas.height = Math.max(1, el.clientHeight) * dpr;
-  overlayCanvas.style.width = el.clientWidth + 'px';
-  overlayCanvas.style.height = el.clientHeight + 'px';
-  overlayCanvas.style.position = 'absolute';
-  overlayCanvas.style.left = '0';
-  overlayCanvas.style.top = '0';
-  overlayCanvas.style.borderRadius = getComputedStyle(el).borderRadius;
-  const octx = overlayCanvas.getContext('2d');
-
-  // small glow animation inside overlay
-  let start = performance.now();
-  const maxR = Math.max(overlayCanvas.width, overlayCanvas.height) * 0.6;
-  function drawOverlay(now){
-    const t = now - start;
-    const dur = 1000;
-    const prog = Math.min(1, t / dur);
-    octx.clearRect(0,0,overlayCanvas.width, overlayCanvas.height);
-    const cx = overlayCanvas.width*0.5;
-    const cy = overlayCanvas.height*0.5;
-    const radius = maxR * prog;
-    const grad = octx.createRadialGradient(cx,cy,radius*0.1,cx,cy,radius);
-    grad.addColorStop(0, 'rgba(0,240,255,' + (0.25*(1-prog)) + ')');
-    grad.addColorStop(0.5, 'rgba(166,240,255,' + (0.12*(1-prog)) + ')');
-    grad.addColorStop(1, 'rgba(0,0,0,0)');
-    octx.fillStyle = grad;
-    octx.beginPath();
-    octx.arc(cx,cy,radius,0,Math.PI*2);
-    octx.fill();
-    if(prog < 1) requestAnimationFrame(drawOverlay);
-  }
-  requestAnimationFrame(drawOverlay);
-
-  // page-level emphasis
-  createPulse(window.innerWidth*0.5, window.innerHeight*0.5, '#bff', 420, 900);
-  playClick();
-}
-
-function closeBio(){
-  bioContainer.innerHTML = '';
-  bioContainer.style.display = 'none';
-}
-
-/* ---------------------------
-   UI wiring and interactions
-   --------------------------- */
-$all('[data-scroll]').forEach(a=>{
-  a.addEventListener('click', (e)=>{
-    e.preventDefault();
-    const dest = a.getAttribute('data-scroll');
-    if(dest === 'home') window.scrollTo({top:0,behavior:'smooth'});
-    else {
-      const el = document.getElementById(dest);
-      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
-    }
-  });
-});
-
-$('#gotoExhibits').addEventListener('click', ()=> {
-  const el = document.getElementById('exhibits');
-  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-});
-
-/* prime click audio on first user gesture to avoid autoplay restrictions */
-document.addEventListener('click', function primeAudio(){
-  try{
-    clickSound.volume = 0.0001;
-    clickSound.play().then(()=>{ clickSound.pause(); clickSound.currentTime = 0; clickSound.volume = 0.22; });
-  }catch(e){}
-  document.removeEventListener('click', primeAudio);
-}, {once:true});
-
-/* initial reveal (simple) */
-window.addEventListener('DOMContentLoaded', ()=>{
-  $all('.panel').slice(0,6).forEach((el,i)=> setTimeout(()=> el.classList.add('reveal'), i*80));
-});
-
-/* initial page load hash handling */
-window.addEventListener('load', ()=>{
-  const h = location.hash.replace('#','');
-  if(h && (h in PAGES)) renderPage(h);
-  else history.replaceState({page:'main'}, '', location.pathname);
-});
-/* modal helpers */
-function openModal(title, html){ $('#modalTitle').textContent = title; $('#modalContent').innerHTML = html; $('#modal').style.display = 'flex'; }
-function closeModal(){ $('#modal').style.display = 'none'; }
-
-/* small helper to create page-level pulse (exposed) */
-function createPulse(x,y,color,maxR,duration){ createPulse; pulses = pulses || []; createPulse(x,y,color,maxR,duration) } // NOTE: placeholder - real createPulse already defined earlier
-
 </script>
 
 </body>
